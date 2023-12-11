@@ -7,6 +7,7 @@ const Signup =  () => {
 
   var [form, setForm] = useState({});  
   const navigate = useNavigate();
+  var [message, setMessage] = useState("");
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -24,25 +25,31 @@ const Signup =  () => {
     try{
       const {data} = await axios.post(backendPortURL + 'auth/register', form)
       if(data.error){
-        alert(data.error)
+        console.log(data.error);
+        setMessage(data.error);
       } else {
         setForm({});
-        alert('Login Successful');
-        navigate('/hero');
+        console.log('Login Successful');
+        navigate(`/hero?token=${data.token}`);
       }
     }
     catch(err){
-      alert(err);
+      setMessage(err);
+      console.log(err);
     }
   }
 
   return (
-    <div className='flex flex-col justify-center items-center h-screen'>
+    <div className='flex flex-col justify-center items-center h-screen bg-gradient-to-tl'>
+      <div className='bg-white px-8 py-12 rounded-[15px]'>
+        <h3 className='text-black text-center text-3xl font-medium pb-4'>SIGNUP</h3>
         <form onSubmit={handleSubmit} className='flex flex-col'>
-            <input type='email' placeholder='email' name='email' onChange={handleChange} required/>            
-            <input type='password' placeholder='password' name='password' onChange={handleChange} required/>    
-            <button type='submit' className='bg-white text-black'>SUBMIT</button>        
+          <input type='email' placeholder='Email' name='email' onChange={handleChange} required className='m-2 p-2 bg-[#88ddff] placeholder:text-black rounded-[5px] text-black'/>
+          <input type='password' placeholder='Password' name='password' onChange={handleChange} required className='m-2 p-2 bg-[#88ddff] placeholder:text-black rounded-[5px] text-black'/>
+          <button type='submit' className='bg-[#f2f9ff] text-black m-2 p-2 rounded-[5px] font-medium border-2 border-[#88ddff] hover:scale-110' >SUBMIT</button>
+          <p className='text-[#ff0000]'>{message}</p>
         </form>
+      </div>
     </div>
   )
 }

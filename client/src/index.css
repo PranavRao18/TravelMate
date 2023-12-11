@@ -13,6 +13,10 @@
   color-scheme: dark;
 }
 
+*::selection{
+  background-color: #2acdff;
+}
+
 /* CSS for Top Navbar with Gradient Background */
 .bg-gradient-to-tl {
   background: linear-gradient(to top left, #00C2FF, #FFFFFF);
