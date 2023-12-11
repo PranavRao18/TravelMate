@@ -1,29 +1,47 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Home = () => {
-    return (
-        <>
-            <div>
-                <Link
-                    to="/login"
-                    className="w-full flex justify-center">
-                    <button className="bg-white text-black py-1 px-4 rounded-[10px] sm:rounded-[15px] font-medium text-2xl hover:scale-110 flex flex-col justify-center items-center">
-                        LOGIN
-                    </button>
-                </Link>
-            </div>
-            <div>
-                <Link
-                    to="/register"
-                    className="w-full flex justify-center">
-                    <button className="bg-white text-black py-1 px-4 rounded-[10px] sm:rounded-[15px] font-medium text-2xl hover:scale-110 flex flex-col justify-center items-center">
-                        SIGNUP
-                    </button>
-                </Link>
-            </div>
-        </>
-    )
-}
+const ButtonLink = ({ to, children, className }) => (
+  <Link to={to} className={`hover:underline ${className}`}>
+    {children}
+  </Link>
+);
 
-export default Home
+const Home = () => {
+  return (
+    <div className="min-h-screen bg-gradient-to-tl from-00C2FF to-FFFFFF text-white relative">
+      <div className="container mx-auto flex items-center justify-between py-4 relative z-20">
+        <div className="flex items-center mt-10">
+          <img
+            src="https://picsum.photos/200/300" 
+            alt="Travel Mate Logo"
+            className="h-8 w-8 ml-10"
+          />
+          <span className="text-2xl font-bold" style={{ color: '#00C2FF', marginLeft: '4px' }}>
+            Travel Mate
+          </span>
+        </div>
+
+        <div className='mr-10 mt-10'>
+          <ButtonLink to="/login" className="text-white">
+            <button
+              className="bg-002CFF text-white py-1 px-4 rounded-[10px] sm:rounded-[15px] font-medium text-2xl hover:scale-110"
+            >
+              LOGIN
+            </button>
+          </ButtonLink>
+        </div>
+      </div>
+
+      <div className="absolute left-10 right-10 bg-002CFF p-8 rounded-[30px] mt-18 h-96">
+        <img
+          src="https://picsum.photos/200/300"
+          alt="Airplane"
+          className="h-3/4 w-3/4 mx-auto"
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Home;

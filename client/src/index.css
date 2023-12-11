@@ -12,3 +12,13 @@
   scroll-behavior: smooth;
   color-scheme: dark;
 }
+
+/* CSS for Top Navbar with Gradient Background */
+.bg-gradient-to-tl {
+  background: linear-gradient(to top left, #00C2FF, #FFFFFF);
+}
+
+
+.bg-002CFF {
+  background-color: #00C2FF;
+}
