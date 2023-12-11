@@ -29,7 +29,9 @@ router.post("/register", async(req, res) => {
     bcrypt.genSalt(saltRounds, function(err, salt) {
       bcrypt.hash(password, salt, function(err, hash) {
         const user = User.create({
-          username, password: hash
+          username, 
+          password: hash,
+          history: {},
         });
         jwt.sign({email: username, id: user._id}, process.env.SECRET_KEY, {}, (err, token) => {
           if(err) throw err;

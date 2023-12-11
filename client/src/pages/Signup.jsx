@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import backendPortURL from '../constants';
 
 const Signup =  () => {
 
@@ -21,7 +22,7 @@ const Signup =  () => {
     event.preventDefault();
     console.log(form);
     try{
-      const {data} = await axios.post('http://localhost:3000/auth/register', form)
+      const {data} = await axios.post(backendPortURL + 'auth/register', form)
       if(data.error){
         alert(data.error)
       } else {
