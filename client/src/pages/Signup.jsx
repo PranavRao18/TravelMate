@@ -39,8 +39,8 @@ const Signup =  () => {
   return (
     <div className='flex flex-col justify-center items-center h-screen'>
         <form onSubmit={handleSubmit} className='flex flex-col'>
-            <input type='email' placeholder='email' name='email' onChange={handleChange}/>            
-            <input type='password' placeholder='password' name='password' onChange={handleChange}/>    
+            <input type='email' placeholder='email' name='email' onChange={handleChange} required/>            
+            <input type='password' placeholder='password' name='password' onChange={handleChange} required/>    
             <button type='submit' className='bg-white text-black'>SUBMIT</button>        
         </form>
     </div>

@@ -1,41 +1,43 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import backendPortURL from '../constants';
+import axios from 'axios';
+import jsCookie from 'js-cookie';
+import { useLocation } from 'react-router-dom';
 
 const Hero = () => {
     const [userDetails, setUserDetails] = useState(null);
+    const { search } = useLocation();
+    const queryParams = new URLSearchParams(search);
+    const token = (queryParams.get('token'));
 
     useEffect(() => {
-        // Fetch user details using the token
         fetchUserDetails();
     }, []);
 
     const fetchUserDetails = async () => {
         try {
-            // Retrieve the token from localStorage
-            const token = localStorage.getItem('token');
+            // Retrieve the token from the cookie
+            console.log(token);
 
-            // If the token is not present, redirect to the login page
             if (!token) {
+                console.error('Token is missing');
+                // Handle the case where the token is missing, maybe redirect to the login page
                 window.location.href = '/login';
-                return;
             }
 
-            // Fetch user details from an authenticated route using the token
             const response = await axios.get(backendPortURL + 'api/user-details', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
+                withCredentials: true, // Ensure credentials are sent with the request
             });
-
-            // If the request is successful, update the user details
             setUserDetails(response.data);
         } catch (error) {
-            // Handle authentication error
-            console.error('Authentication error:', error);
-
-            // If the error status is 401 (Unauthorized), redirect to the login page
             if (error.response && error.response.status === 401) {
-                // Redirect to the login page
+                console.log('Redirect to login page'); // Redirect to the login page
+                window.location.href = '/login';
+            } else {
+                console.error('Authentication error:', error);
                 window.location.href = '/login';
             }
         }
@@ -44,13 +46,11 @@ const Hero = () => {
     return (
         <div>
             {userDetails ? (
-                // Display user details
                 <div>
-                    <p>Welcome, {userDetails.username}!</p>
-                    <p>ID: {userDetails._id}</p>
+                    <p>Welcome, {userDetails.email}!</p>
+                    <p>ID: {userDetails.id}</p>
                 </div>
             ) : (
-                // Optionally, you can show a loading message or spinner while fetching data
                 <p>Loading...</p>
             )}
         </div>

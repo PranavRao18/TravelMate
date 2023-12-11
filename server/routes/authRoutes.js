@@ -35,7 +35,7 @@ router.post("/register", async(req, res) => {
         });
         jwt.sign({email: username, id: user._id}, process.env.SECRET_KEY, {}, (err, token) => {
           if(err) throw err;
-          res.cookie('token', token).json(user);
+          res.json({user: user, token: token});
         });
       });
     });
@@ -62,9 +62,12 @@ router.post('/login', async(req, res, next) => {
       res.json({error: err});
     }
     if(result === true){
-      jwt.sign({email: username, id: user._id}, process.env.SECRET_KEY, {}, (err, token) => {
+      jwt.sign({email: username, id: user._id}, process.env.SECRET_KEY, {
+        expiresIn: 300
+      }, (err, token) => {
         if(err) throw err;
-        res.cookie('token', token).json(user);
+        console.log(token);
+        res.json({token: token, user: user});
       });
     }
     else{
