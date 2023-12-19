@@ -9,7 +9,7 @@ const ButtonLink = ({ to, children, className }) => (
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-tl from-00C2FF to-FFFFFF text-white relative">
+    <div className="min-h-screen text-white relative bg-img">
       <div className="container mx-auto flex items-center justify-between py-4 relative z-20">
         <div className="flex items-center mt-10">
           <img
@@ -17,7 +17,7 @@ const Home = () => {
             alt="Travel Mate Logo"
             className="h-8 w-8 ml-10"
           />
-          <span className="text-2xl font-bold" style={{ color: '#00C2FF', marginLeft: '4px' }}>
+          <span className="text-2xl font-bold drop-shadow-lg" style={{ color: '#fff', marginLeft: '4px' }}>
             Travel Mate
           </span>
         </div>
@@ -25,7 +25,7 @@ const Home = () => {
         <div className='mr-10 mt-10'>
           <ButtonLink to="/login" className="text-white">
             <button
-              className="bg-002CFF text-white py-1 px-4 rounded-[10px] sm:rounded-[15px] font-medium text-2xl hover:scale-110"
+              className="bg-[#FFF] text-[#00c2ff] py-1 px-4 rounded-[10px] sm:rounded-[15px] font-semibold text-2xl hover:scale-110"
             >
               LOGIN
             </button>
@@ -33,7 +33,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="absolute left-10 right-10 bg-002CFF p-8 rounded-[30px] mt-18 h-96">
+      <div className="absolute left-10 right-10 bg-white p-8 rounded-[30px] mt-18 h-96">
         <img
           src="https://picsum.photos/200/300"
           alt="Airplane"

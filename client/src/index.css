@@ -26,3 +26,7 @@
 .bg-002CFF {
   background-color: #00C2FF;
 }
+
+.bg-img{
+  background-image: url("./assets/sky.jpg");
+}
